@@ -4,7 +4,6 @@
 //Libraries
  #include<stdlib.h>
  #include<vector>
- #include<map>
  #include<stdio.h>
  #include<string>
 
@@ -49,6 +48,12 @@ void PUSH_R10(string value);
 void PUSH_R11(string value);
 void PUSH_R12(string value);
 string CHECK_LIGHTEST_STACK();
+
+
+//Macros::---------------------------------
+#define ObjectStream vector<Object>
+//-----------------------------------------
+
 //Variable stack
 struct Variable{
  string name;
@@ -162,6 +167,114 @@ void ASSIGN_VAR(string name, string value){
             R1.memory[var.address].used = 1; // mark the new object as used
         }
     }
+}
+
+void removeElementAtIndex(ObjectStream& vec, int index) {
+    if (index < vec.size()) {
+        vec.erase(vec.begin() + index);
+    }
+}
+
+
+void GC(){
+    //For R1:
+    int i = 0;
+    for(Object obj : R1.memory){
+        if(obj.used == 0){
+            removeElementAtIndex(R1.memory,i);
+        }
+        i++;
+    }
+
+    //For R2
+    i = 0;
+    for(Object obj : R2.memory){
+        if(obj.used == 0){
+            removeElementAtIndex(R2.memory,i);
+        }
+        i++;
+    }
+    //For R3
+    i = 0;
+    for(Object obj : R3.memory){
+        if(obj.used == 0){
+            removeElementAtIndex(R3.memory,i);
+        }
+        i++;
+    }
+    //For R4
+    i = 0;
+    for(Object obj : R4.memory){
+        if(obj.used == 0){
+            removeElementAtIndex(R4.memory,i);
+        }
+        i++;
+    }
+    //For R5
+    i = 0;
+    for(Object obj : R5.memory){
+        if(obj.used == 0){
+            removeElementAtIndex(R5.memory,i);
+        }
+        i++;
+    }
+    //For R6
+    i = 0;
+    for(Object obj : R6.memory){
+        if(obj.used == 0){
+            removeElementAtIndex(R6.memory,i);
+        }
+        i++;
+    }
+    //For R7
+    i = 0;
+    for(Object obj : R7.memory){
+        if(obj.used == 0){
+            removeElementAtIndex(R7.memory,i);
+        }
+        i++;
+    }
+    //For R8
+    i = 0;
+    for(Object obj : R8.memory){
+        if(obj.used == 0){
+            removeElementAtIndex(R8.memory,i);
+        }
+        i++;
+    }
+    //For R9
+    i = 0;
+    for(Object obj : R9.memory){
+        if(obj.used == 0){
+            removeElementAtIndex(R9.memory,i);
+        }
+        i++;
+    }
+    //For R10
+    i = 0;
+    for(Object obj : R10.memory){
+        if(obj.used == 0){
+            removeElementAtIndex(R10.memory,i);
+        }
+        i++;
+    }
+    //For R11
+    i = 0;
+    for(Object obj : R11.memory){
+        if(obj.used == 0){
+            removeElementAtIndex(R11.memory,i);
+        }
+        i++;
+    }
+    //For R12
+    i = 0;
+    for(Object obj : R12.memory){
+        if(obj.used == 0){
+            removeElementAtIndex(R12.memory,i);
+        }
+        i++;
+    }
+
 }
 
 #endif // STACK_IR
