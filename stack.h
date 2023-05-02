@@ -15,8 +15,12 @@ struct Object{
     bool used;
 };
 
+//Macros::---------------------------------
+#define ObjectStream vector<Object>
+//-----------------------------------------
+
 struct Memory{
-    vector<Object> memory;
+    ObjectStream memory;
 };
 //All memory
 Memory R1;
@@ -50,9 +54,6 @@ void PUSH_R12(string value);
 string CHECK_LIGHTEST_STACK();
 
 
-//Macros::---------------------------------
-#define ObjectStream vector<Object>
-//-----------------------------------------
 
 //Variable stack
 struct Variable{
