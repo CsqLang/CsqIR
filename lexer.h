@@ -46,6 +46,7 @@ OptTokenStream tokenizeOptCode(vector<OptStringStream> code){
             }
         }
     }
+    return tokens;
 }
 
 #endif // LEXER_IR
