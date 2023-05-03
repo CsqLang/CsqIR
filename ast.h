@@ -12,7 +12,8 @@ enum OptNodeType {
 
 enum OptValueType {
     STR,
-    NUM,
+    FLOAT,
+    INTEGER,
 };
 
 struct OptNode {
@@ -69,8 +70,8 @@ string evaluateBinaryExpr(shared_ptr<OptBinNode> node) {
             return "";
         }
     }
-    else if(static_pointer_cast<OptValueNode>(node->left)->val_type == NUM){
-        if(static_pointer_cast<OptValueNode>(node->right)->val_type == NUM){
+    else if(static_pointer_cast<OptValueNode>(node->left)->val_type == FLOAT){
+        if(static_pointer_cast<OptValueNode>(node->right)->val_type == FLOAT){
             double leftValue = stod(visit(static_pointer_cast<OptValueNode>(node->left)));
             double rightValue = stod(visit(static_pointer_cast<OptValueNode>(node->right)));
             if (node->opt == "+") {
@@ -86,6 +87,24 @@ string evaluateBinaryExpr(shared_ptr<OptBinNode> node) {
             return "";
         }
     }
+    else if(static_pointer_cast<OptValueNode>(node->left)->val_type == INTEGER){
+        if(static_pointer_cast<OptValueNode>(node->right)->val_type == FLOAT){
+            long long int leftValue = stoi(visit(static_pointer_cast<OptValueNode>(node->left)));
+            long long int rightValue = stoi(visit(static_pointer_cast<OptValueNode>(node->right)));
+            if (node->opt == "+") {
+                return to_string(leftValue + rightValue);
+            }
+            else {
+                error("Unknown token " + node->opt + ".");
+                return "";
+            }
+        }
+        else{
+            error("Couldn't add operand of type Number and String.");
+            return "";
+        }
+    }
+    return "";
 }
 
 string visit(shared_ptr<OptBinNode> expr) {
