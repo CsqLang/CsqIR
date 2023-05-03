@@ -87,9 +87,22 @@ string evaluateBinaryExpr(shared_ptr<OptBinNode> node) {
         }
     }
 }
+
+string visit(shared_ptr<OptBinNode> expr) {
+    return evaluateBinaryExpr(expr);
+}
+
+
 OPTNODE addNode(OptValueNode val){
     auto node = make_shared<OptValueNode>();
     node->expr = val.expr;
     node->val_type = val.val_type;
+    return static_pointer_cast<OptNode>(node);
+}
+OPTNODE addNode(OptBinNode val){
+    auto node = make_shared<OptBinNode>();
+    node->left = val.left;
+    node->right = val.right;
+    node->opt = val.opt;
     return static_pointer_cast<OptNode>(node);
 }
