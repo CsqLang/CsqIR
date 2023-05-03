@@ -77,6 +77,18 @@ string evaluateBinaryExpr(shared_ptr<OptBinNode> node) {
             if (node->opt == "+") {
                 return to_string(leftValue + rightValue);
             }
+            else if (node->opt == "-") {
+                return to_string(leftValue - rightValue);
+            }
+            else if (node->opt == "*") {
+                return to_string(leftValue * rightValue);
+            }
+            else if (node->opt == "/") {
+                return to_string(leftValue / rightValue);
+            }
+            else if (node->opt == "%") {
+                error("Invalid operands of types float and float to binary operator %.");
+            }
             else {
                 error("Unknown token " + node->opt + ".");
                 return "";
@@ -88,11 +100,23 @@ string evaluateBinaryExpr(shared_ptr<OptBinNode> node) {
         }
     }
     else if(static_pointer_cast<OptValueNode>(node->left)->val_type == INTEGER){
-        if(static_pointer_cast<OptValueNode>(node->right)->val_type == FLOAT){
+        if(static_pointer_cast<OptValueNode>(node->right)->val_type == INTEGER || static_pointer_cast<OptValueNode>(node->right)->val_type == FLOAT){
             long long int leftValue = stoi(visit(static_pointer_cast<OptValueNode>(node->left)));
             long long int rightValue = stoi(visit(static_pointer_cast<OptValueNode>(node->right)));
             if (node->opt == "+") {
                 return to_string(leftValue + rightValue);
+            }
+            else if (node->opt == "-") {
+                return to_string(leftValue - rightValue);
+            }
+            else if (node->opt == "*") {
+                return to_string(leftValue * rightValue);
+            }
+            else if (node->opt == "/") {
+                return to_string(leftValue / rightValue);
+            }
+            else if (node->opt == "%") {
+                return to_string(leftValue % rightValue);
             }
             else {
                 error("Unknown token " + node->opt + ".");
