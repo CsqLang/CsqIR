@@ -21,13 +21,13 @@ struct OptNode {
     OptNode(OptNodeType type_) { type = type_; }
 };
 
-#define OPTNODE std::shared_ptr<OptNode>
+#define OPTNODE shared_ptr<OptNode>
 
 struct OptValueNode : OptNode {
-    std::string expr;
+    string expr;
     OptValueType val_type;
     OptValueNode() { type = VALUE; expr = ""; }
-    OptValueNode(std::string express, OptValueType type_) {
+    OptValueNode(string express, OptValueType type_) {
         type = VALUE;
         val_type = type_;
         expr = express;
@@ -37,9 +37,9 @@ struct OptValueNode : OptNode {
 struct OptBinNode : OptNode {
     OPTNODE left;
     OPTNODE right;
-    std::string opt;
+    string opt;
     OptBinNode() { type = BINOP; }
-    OptBinNode(OPTNODE left_, OPTNODE right_, std::string operator_) {
+    OptBinNode(OPTNODE left_, OPTNODE right_, string operator_) {
         left = left_;
         right = right_;
         opt = operator_;
